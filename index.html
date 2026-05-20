@@ -776,16 +776,15 @@
       maskedTitle.textContent = currentTitle;
       setMessage(`答えは「${currentTitle}」でした。`, "error");
     }
+function shareOnX() {
+  const url = window.location.origin;
+  const text = currentTitle
+    ? `この漢字だけWiki、何の記事かわかる？ ${maskTitle(currentTitle)} #漢字だけWikiクイズ`
+    : "漢字と記号だけでWikipediaの記事名を当てるクイズ。 #漢字だけWikiクイズ";
 
-    function shareOnX() {
-      const url = window.location.origin;
-      const text = currentTitle
-        ? `この漢字だけWiki、何の記事かわかる？ ${maskTitle(currentTitle)} #漢字だけWikiクイズ`
-        : "漢字と記号だけでWikipediaの記事名を当てるクイズ。 #漢字だけWikiクイズ";
-
-      const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
-      window.open(shareUrl, "_blank", "noopener,noreferrer");
-    }
+  const shareUrl = `https://x.com/intent/post?text=${encodeURIComponent(`${text}\n${url}`)}`;
+  window.location.href = shareUrl;
+}
 
     function maskTitle(title) {
       return [...title].map(() => "□").join("");
