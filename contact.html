@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="漢字だけWikiクイズへのお問い合わせページです。不具合報告、改善要望、その他のお問い合わせをGoogleフォームから送信できます。" />
+  <meta property="og:title" content="お問い合わせ | 漢字だけWikiクイズ" />
+  <meta property="og:description" content="漢字だけWikiクイズへのお問い合わせはこちら。" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <title>お問い合わせ | 漢字だけWikiクイズ</title>
+  <style>
+    :root {
+      --bg: #f5f1e8;
+      --paper: #fffaf0;
+      --ink: #1f2933;
+      --muted: #6b7280;
+      --line: #d8cfc0;
+      --accent: #8a4b16;
+      --accent-dark: #63340d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.9;
+    }
+
+    header,
+    main,
+    footer {
+      width: min(920px, calc(100% - 24px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 34px 0 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 5vw, 42px);
+      letter-spacing: 0.04em;
+    }
+
+    .lead {
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    main {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 16px 40px rgba(72, 47, 20, 0.10);
+    }
+
+    h2 {
+      margin-top: 1.8em;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--line);
+      font-size: 21px;
+    }
+
+    h2:first-child {
+      margin-top: 0;
+    }
+
+    a {
+      color: var(--accent-dark);
+      font-weight: 700;
+    }
+
+    .contact-card {
+      margin: 18px 0;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fffdf8;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .button:hover {
+      background: var(--accent-dark);
+      text-decoration: none;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .site-footer {
+      padding: 22px 0 36px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      margin-bottom: 8px;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>お問い合わせ</h1>
+    <p class="lead">不具合報告、改善要望、その他のお問い合わせはこちらからお願いいたします。</p>
+  </header>
+
+  <main>
+    <h2>お問い合わせフォーム</h2>
+    <p>
+      漢字だけWikiクイズに関するお問い合わせは、下記のGoogleフォームよりお送りください。
+    </p>
+
+    <div class="contact-card">
+      <p>
+        不具合報告の場合は、利用している端末、ブラウザ、発生した操作、表示されたエラーなども添えていただけると確認しやすくなります。
+      </p>
+      <a class="button" href="https://docs.google.com/forms/d/e/1FAIpQLSdXFE7sccvsJia33st61w5cWujW1gajk72U8YsRlBQY03OCZQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">Googleフォームを開く</a>
+    </div>
+
+    <h2>お問い合わせ内容の例</h2>
+    <ul>
+      <li>ゲームが正常に動作しない</li>
+      <li>Wikipedia記事が取得できない</li>
+      <li>表示やレイアウトが崩れている</li>
+      <li>機能追加や改善の要望</li>
+      <li>その他、サイトに関する連絡</li>
+    </ul>
+
+    <h2>返信について</h2>
+    <p>
+      内容によっては返信できない場合があります。また、返信までに時間がかかる場合があります。
+      あらかじめご了承ください。
+    </p>
+
+    <p class="note">
+      ※ GoogleフォームのURLは、公開前に実際のフォームURLへ差し替えてください。
+    </p>
+
+    <p><a href="/">トップページへ戻る</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <nav class="footer-links" aria-label="フッターナビゲーション">
+      <a href="/">トップ</a>
+      <a href="/how-to-play.html">遊び方</a>
+      <a href="/about.html">このサイトについて</a>
+      <a href="/privacy.html">プライバシーポリシー</a>
+      <a href="/contact.html">お問い合わせ</a>
+    </nav>
+    <div>© 漢字だけWikiクイズ</div>
+  </footer>
+</body>
+</html>
