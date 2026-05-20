@@ -3,7 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>漢字だけWikiクイズ</title>
+  <meta name="description" content="Wikipediaの記事を漢字と記号だけで読んで、元の記事タイトルを当てる無料ブラウザクイズゲームです。" />
+  <meta property="og:title" content="漢字だけWikiクイズ" />
+  <meta property="og:description" content="Wikipediaの記事を漢字と記号だけで読んで、元の記事タイトルを当てるクイズゲーム。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kanjiwikiquiz.com/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="漢字だけWikiクイズ" />
+  <meta name="twitter:description" content="Wikipediaの記事を漢字と記号だけで読んで、元の記事タイトルを当てるクイズゲーム。" />
+  <link rel="canonical" href="https://kanjiwikiquiz.com/" />
+  <title>漢字だけWikiクイズ | Wikipediaの記事名当てゲーム</title>
   <style>
     :root {
       --bg: #f5f1e8;
@@ -307,6 +316,44 @@
       word-break: break-all;
     }
 
+    .share-button {
+      width: 100%;
+      margin-top: 10px;
+      background: #111827;
+    }
+
+    .share-button:hover {
+      background: #000;
+    }
+
+    .site-footer {
+      width: min(1080px, calc(100% - 24px));
+      margin: 0 auto 36px;
+      padding: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      margin-bottom: 8px;
+    }
+
+    .footer-links a {
+      color: var(--accent-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
     @media (max-width: 860px) {
       .app {
         grid-template-columns: 1fr;
@@ -377,6 +424,8 @@
         <button id="giveUpButton" class="ghost">答え</button>
       </div>
 
+      <button id="shareButton" class="share-button" disabled>Xで共有</button>
+
       <div id="message" class="message">新しい問題を押して開始してください。</div>
 
       <ul id="hintList" class="hint-list"></ul>
@@ -398,6 +447,20 @@
     </main>
   </div>
 
+  <footer class="site-footer">
+    <nav class="footer-links" aria-label="フッターナビゲーション">
+      <a href="/">トップ</a>
+      <a href="/how-to-play.html">遊び方</a>
+      <a href="/about.html">このサイトについて</a>
+      <a href="/privacy.html">プライバシーポリシー</a>
+      <a href="/contact.html">お問い合わせ</a>
+    </nav>
+    <div>
+      このサイトはWikipediaの記事を取得し、漢字と記号のみを表示するクイズ形式に加工しています。
+      元記事へのリンクは各問題内に表示しています。
+    </div>
+  </footer>
+
   <script>
     const modeSelect = document.getElementById("modeSelect");
     const urlArea = document.getElementById("urlArea");
@@ -407,6 +470,7 @@
     const answerButton = document.getElementById("answerButton");
     const hintButton = document.getElementById("hintButton");
     const giveUpButton = document.getElementById("giveUpButton");
+    const shareButton = document.getElementById("shareButton");
     const message = document.getElementById("message");
     const hintList = document.getElementById("hintList");
     const articleBody = document.getElementById("articleBody");
@@ -435,6 +499,7 @@
     answerButton.addEventListener("click", submitAnswer);
     hintButton.addEventListener("click", showHint);
     giveUpButton.addEventListener("click", giveUp);
+    shareButton.addEventListener("click", shareOnX);
 
     answerInput.addEventListener("keydown", (event) => {
       if (event.key === "Enter") submitAnswer();
@@ -473,6 +538,7 @@
 
         maskedTitle.textContent = maskTitle(currentTitle);
         articleMeta.innerHTML = `<a class="source-link" href="${currentUrl}" target="_blank" rel="noopener noreferrer">元記事</a>`;
+        shareButton.disabled = false;
         setMessage("この記事は何でしょう？", "");
         answerInput.focus();
       } catch (error) {
@@ -711,13 +777,18 @@
       setMessage(`答えは「${currentTitle}」でした。`, "error");
     }
 
+    function shareOnX() {
+      const url = window.location.origin;
+      const text = currentTitle
+        ? `この漢字だけWiki、何の記事かわかる？ ${maskTitle(currentTitle)} #漢字だけWikiクイズ`
+        : "漢字と記号だけでWikipediaの記事名を当てるクイズ。 #漢字だけWikiクイズ";
+
+      const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+      window.open(shareUrl, "_blank", "noopener,noreferrer");
+    }
+
     function maskTitle(title) {
-      return [...title].map((ch) => {
-        if (/[\p{Script=Han}々〆〇、。・：；？！「」『』（）［］｛｝〈〉《》【】〔〕ー〜…]/u.test(ch)) {
-          return ch;
-        }
-        return "□";
-      }).join("");
+      return [...title].map(() => "□").join("");
     }
 
     function normalizeText(value) {
@@ -732,6 +803,7 @@
       answerButton.disabled = isBusy;
       hintButton.disabled = isBusy;
       giveUpButton.disabled = isBusy;
+      shareButton.disabled = isBusy || !currentTitle;
     }
 
     function setMessage(text, type) {
